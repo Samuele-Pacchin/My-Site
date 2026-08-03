@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samuele Pacchin — Web Developer & Automation Specialist</title>
+<meta name="description" content="Samuele Pacchin — sviluppo siti web e automazioni per semplificare, velocizzare e automatizzare il lavoro delle aziende. Massimizzare i risultati, minimizzare le operazioni.">
+<meta property="og:title" content="Samuele Pacchin — Web Developer & Automation Specialist">
+<meta property="og:description" content="Siti web e automazioni. Massimizzare i risultati, minimizzare le operazioni.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bg-grad"></div>
+<canvas id="net"></canvas>
+<div class="grain"></div>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#top" class="logo"><span class="dot"></span>Samuele Pacchin</a>
+    <nav class="nav-links" id="menu">
+      <a href="#about">Chi sono</a>
+      <a href="#servizi">Servizi</a>
+      <a href="#competenze">Competenze</a>
+      <a href="#contatti" class="nav-cta">Lavoriamo insieme</a>
+    </nav>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="badge reveal"><span class="live"></span>Web Developer &amp; Automation Specialist</div>
+    <h1 class="title reveal">Costruisco siti e <span class="grad">automatizzo</span> il lavoro che ti rallenta.</h1>
+    <p class="hero-sub reveal">Sono <b style="color:var(--txt)">Samuele Pacchin</b>. Progetto siti web su misura e costruisco automazioni che tolgono alle aziende le operazioni ripetitive.</p>
+    <p class="hero-line reveal"><span class="lead">La mia filosofia</span><b>Massimizzare i risultati, minimizzare le operazioni.</b></p>
+    <div class="hero-cta reveal">
+      <a href="#contatti" class="btn btn-primary">Iniziamo un progetto →</a>
+      <a href="#servizi" class="btn btn-ghost">Cosa faccio</a>
+    </div>
+
+    <!-- TICKER scorrevole -->
+    <div class="ticker reveal">
+      <div class="ticker-track">
+        <!-- gruppo 1 -->
+        <div class="tick"><span class="n">300h</span><span class="l">formazione web dev</span></div>
+        <div class="tick"><span class="n">n8n</span><span class="l">automazioni &amp; workflow</span></div>
+        <div class="tick"><span class="n">GoHighLevel</span><span class="l">gestione lead &amp; pipeline</span></div>
+        <div class="tick"><span class="n">WordPress</span><span class="l">siti web &amp; e-commerce</span></div>
+        <div class="tick"><span class="n">Shopify</span><span class="l">negozi digitali avanzati</span></div>
+        <div class="tick"><span class="n">100%</span><span class="l">progetti su misura</span></div>
+        <!-- gruppo 2: copia identica per il loop infinito (NON cancellare) -->
+        <div class="tick" aria-hidden="true"><span class="n">300h</span><span class="l">formazione web dev</span></div>
+        <div class="tick" aria-hidden="true"><span class="n">n8n</span><span class="l">automazioni &amp; workflow</span></div>
+        <div class="tick" aria-hidden="true"><span class="n">GoHighLevel</span><span class="l">gestione lead &amp; pipeline</span></div>
+        <div class="tick" aria-hidden="true"><span class="n">WordPress</span><span class="l">siti web &amp; e-commerce</span></div>
+        <div class="tick" aria-hidden="true"><span class="n">Shopify</span><span class="l">negozi digitali avanzati</span></div>
+        <div class="tick" aria-hidden="true"><span class="n">100%</span><span class="l">progetti su misura</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="eyebrow reveal">Chi sono</div>
+    <h2 class="sec reveal">Non vendo template.<br>Risolvo problemi.</h2>
+    <div class="about-grid">
+      <div>
+        <p class="reveal">Ho una solida preparazione da <b>sviluppatore web</b> — dal front-end al database — che uso per costruire siti curati e progettati sul tuo obiettivo: pagine che funzionano davvero e attirano chi le visita, non semplici vetrine copiate da un modello.</p>
+        <p class="reveal">Ma un sito da solo, oggi, non basta. Per questo mi sto specializzando in <b>piattaforme per la realizzazione di automazioni</b>: strumenti con cui collego gli applicativi che un'azienda già usa e li faccio lavorare da soli. Meno operazioni manuali, meno errori, più tempo per ciò che conta.</p>
+        <div class="quote reveal">"Riuscire a <span>massimizzare il lavoro minimizzando le operazioni</span> è il fulcro della praticità di un'azienda."</div>
+        <p class="reveal">È questo il valore che porto: unire lo sviluppo web all'automazione dei processi per aiutare le aziende a ottenere i migliori risultati con meno sforzo.</p>
+      </div>
+      <div class="about-card reveal">
+        <h3>Come lavora un processo automatizzato</h3>
+        <div class="flow">
+          <div class="flow-item"><div class="ico">📥</div><div class="tx">Input<small>Form, email, lead, dati</small></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-item"><div class="ico">⚙️</div><div class="tx">Automazione<small>analizza, elabora, smista</small></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-item"><div class="ico">🚀</div><div class="tx">Risultato<small>Azione fatta, zero clic manuali</small></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="servizi">
+    <div class="eyebrow reveal">Servizi</div>
+    <h2 class="sec reveal">Due leve, un obiettivo:<br>farti guadagnare tempo.</h2>
+    <p class="sec-lead reveal">Che tu abbia bisogno di una presenza online che funziona e ti fa notare o di liberarti dal lavoro ripetitivo, parto sempre dal tuo processo reale.</p>
+    <div class="svc-grid">
+      <div class="svc reveal">
+        <div class="num">01</div>
+        <div class="ic">🌐</div>
+        <h3>Sviluppo web</h3>
+        <p>Siti e landing page costruiti su misura, curati nei dettagli e responsive. Nessun template riciclato: struttura e design pensati sul tuo obiettivo.</p>
+        <ul>
+          <li>Siti vetrina &amp; landing page che funzionano e attirano</li>
+          <li>Design responsive, ottimizzato per mobile</li>
+          <li>WordPress o sviluppo custom (HTML/CSS/JS/PHP)</li>
+          <li>Integrazione database e form</li>
+        </ul>
+      </div>
+      <div class="svc reveal">
+        <div class="num">02</div>
+        <div class="ic">⚡</div>
+        <h3>Automazioni</h3>
+        <p>Collego gli strumenti che già usi e automatizzo i flussi che ti rubano ore ogni settimana, riducendo errori e operazioni manuali.</p>
+        <ul>
+          <li>Workflow automatici tra app e servizi</li>
+          <li>Gestione automatica di lead ed email</li>
+          <li>Sincronizzazione dati e report</li>
+          <li>Processi ripetitivi eliminati alla radice</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="competenze">
+    <div class="eyebrow reveal">Competenze</div>
+    <h2 class="sec reveal">Lo stack con cui costruisco.</h2>
+    <div class="skills-wrap">
+      <div class="skill-group reveal">
+        <h4>Front-end</h4>
+        <div class="chips">
+          <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Responsive Design</span>
+          <span class="chip">Bootstrap</span><span class="chip">JavaScript</span><span class="chip">jQuery &amp; AJAX</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h4>Back-end &amp; CMS</h4>
+        <div class="chips">
+          <span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">WordPress</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h4>Automazione &amp; piattaforme</h4>
+        <div class="chips">
+          <span class="chip">n8n</span><span class="chip">GoHighLevel</span><span class="chip">Shopify</span><span class="chip">Integrazioni AI</span>
+          <span class="chip">Workflow automation</span><span class="chip">Integrazioni API</span><span class="chip">WordPress</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CREDENTIAL -->
+    <div class="cred reveal">
+      <div class="cred-seal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#04101a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 15a4 4 0 100-8 4 4 0 000 8z"/><path d="M12 15v6l-2-1.5L8 21v-6"/>
+          <path d="M12 3v2M12 15v.01"/><circle cx="12" cy="11" r="8"/>
+        </svg>
+      </div>
+      <div>
+        <h3>Competenze certificate da UniD</h3>
+        <p>Percorso di formazione di <b style="color:var(--txt)">300 ore</b> come Web Developer, con esame finale superato: HTML, CSS, Responsive Design, Bootstrap, WordPress, JavaScript, jQuery &amp; AJAX, database MySQL e PHP.</p>
+        <div class="meta">UniD · Programma accreditato MIM · Google Partner</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contatti" class="contact">
+    <div class="eyebrow reveal" style="justify-content:center">Contatti</div>
+    <h2 class="reveal">Hai un processo da <span class="grad">semplificare?</span><br>Parliamone.</h2>
+    <p class="reveal">Raccontami cosa ti fa perdere tempo. Ti dico come sito e automazione possono liberartelo.</p>
+    <a href="mailto:samuelepacchin.swint@gmail.com" class="mail-btn reveal" id="mailBtn">
+      ✉️ <span class="grad-text">Scrivimi</span> <span class="arrow">↗</span>
+    </a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a href="#top" class="logo"><span class="dot"></span>Samuele Pacchin</a>
+    <p>© <span id="yr"></span> Samuele Pacchin — Web Developer &amp; Automation Specialist</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
