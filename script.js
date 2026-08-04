@@ -4,8 +4,19 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 const header = document.getElementById('header');
 addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 30));
 const burger = document.getElementById('burger'), menu = document.getElementById('menu');
-burger.addEventListener('click', () => menu.classList.toggle('open'));
+burger.addEventListener('click', (e) => { e.stopPropagation(); menu.classList.toggle('open'); });
+// chiudi il menù quando si clicca una voce
 menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+// chiudi il menù cliccando in un punto qualsiasi dello schermo (fuori dal menù)
+document.addEventListener('click', (e) => {
+  if (!menu.classList.contains('open')) return;
+  if (menu.contains(e.target) || burger.contains(e.target)) return;
+  menu.classList.remove('open');
+});
+// chiudi il menù anche con il tasto ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') menu.classList.remove('open');
+});
 
 // Reveal on scroll
 const io = new IntersectionObserver((es) => es.forEach(e => {
@@ -54,7 +65,6 @@ function draw() {
         x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(b.x, b.y); x.stroke();
       }
     }
-    // link to cursor
     const dxm = pts[i].x - mouse.x, dym = pts[i].y - mouse.y, dm = Math.hypot(dxm, dym);
     if (dm < 170 * DPR) {
       x.strokeStyle = 'rgba(47,243,224,' + (1 - dm / (170 * DPR)) * .55 + ')';
