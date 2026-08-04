@@ -1,4 +1,5 @@
 :root{
+  --pair-size: clamp(28px, 4.5vw, 42px);
   --bg:#05060a;
   --bg-2:#0a0d16;
   --panel:rgba(255,255,255,.03);
@@ -147,11 +148,10 @@ h2.sec{font-family:'Space Grotesk';font-weight:700;font-size:clamp(30px,4.6vw,50
 
 /* ---------- CTA / Contact ---------- */
 .contact{text-align:center;padding:130px 0}
-.contact h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(34px,6vw,64px);letter-spacing:-.03em;line-height:1.05;margin-bottom:22px}
+.contact h2{font-family:'Space Grotesk';font-weight:700;font-size:var(--pair-size);letter-spacing:-.03em;line-height:1.05;margin-bottom:22px}
 .contact h2 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .contact p{font-size:18px;color:var(--muted);max-width:520px;margin:0 auto 40px}
-.mail-btn{font-family:'Space Grotesk';font-size:clamp(40px,3vw,26px);font-weight:600;padding:15px 40px;border-radius:100px;cursor:pointer;
-  background:var(--panel);border:1px solid var(--panel-brd);display:inline-flex;align-items:center;gap:14px;transition:.35s}
+.mail-btn{font-family:'Space Grotesk';font-size:var(--pair-size);font-weight:600;padding:20px 40px;border-radius:100px;cursor:pointer;background:var(--panel);border:1px solid var(--panel-brd);display:inline-flex;align-items:center;gap:14px;transition:.35s}
 /* qualsiasi punto del pulsante (busta, testo, freccia, contenitore) apre la mail */
 .mail-btn > *{pointer-events:none}
 .mail-btn:hover{border-color:var(--cyan);box-shadow:0 14px 50px rgba(47,243,224,.25);transform:translateY(-4px)}
