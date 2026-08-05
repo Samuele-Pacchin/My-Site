@@ -81,7 +81,7 @@ h1.title{font-family:'Space Grotesk';font-weight:700;font-size:clamp(42px,7.5vw,
 .btn-ghost:hover{border-color:var(--violet);color:#fff}
 
 /* ---------- Ticker scorrevole ---------- */
-.ticker{position:relative;overflow:hidden;margin-top:58px;padding:8px 0;
+.ticker{position:relative;overflow:hidden;margin-top:110px;padding:8px 0;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);
   mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
 .ticker-track{display:flex;width:max-content;animation:ticker 40s linear infinite;will-change:transform}
@@ -93,7 +93,7 @@ h1.title{font-family:'Space Grotesk';font-weight:700;font-size:clamp(42px,7.5vw,
 @media(prefers-reduced-motion:reduce){.ticker-track{animation:none}}
 
 /* ---------- Section shells ---------- */
-section{padding:90px 0;position:relative}
+section{padding:55px 0;position:relative}
 .eyebrow{font-family:'JetBrains Mono';font-size:13px;color:var(--cyan);letter-spacing:.05em;margin-bottom:16px;display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:'';width:26px;height:1px;background:var(--cyan)}
 h2.sec{font-family:'Space Grotesk';font-weight:700;font-size:clamp(30px,4.6vw,50px);letter-spacing:-.02em;line-height:1.08;margin-bottom:22px}
@@ -139,7 +139,7 @@ h2.sec{font-family:'Space Grotesk';font-weight:700;font-size:clamp(30px,4.6vw,50
 .chip:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-3px);box-shadow:0 8px 24px rgba(47,243,224,.15)}
 
 /* ---------- Credential ---------- */
-.cred{background:linear-gradient(135deg,rgba(138,92,255,.09),rgba(47,243,224,.05));border:1px solid var(--panel-brd);border-radius:24px;padding:44px;margin-top:44px;display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center}
+.cred{background:linear-gradient(135deg,rgba(138,92,255,.09),rgba(47,243,224,.05));border:1px solid var(--panel-brd);border-radius:24px;padding:44px;margin-top:70px;display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center}
 .cred-seal{width:96px;height:96px;border-radius:20px;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 10px 40px rgba(138,92,255,.35)}
 .cred-seal svg{width:52px;height:52px}
 .cred h3{font-family:'Space Grotesk';font-size:22px;margin-bottom:10px}
@@ -147,7 +147,7 @@ h2.sec{font-family:'Space Grotesk';font-weight:700;font-size:clamp(30px,4.6vw,50
 .cred .meta{font-family:'JetBrains Mono';font-size:12.5px;color:var(--dim);margin-top:14px}
 
 /* ---------- CTA / Contact ---------- */
-.contact{text-align:center;padding:90px 0}
+.contact{text-align:center;padding:65px 0}
 .contact h2{font-family:'Space Grotesk';font-weight:700;font-size:var(--pair-size);letter-spacing:-.03em;line-height:1.05;margin-bottom:22px}
 .contact h2 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .contact p{font-size:18px;color:var(--muted);max-width:520px;margin:0 auto 40px}
@@ -179,10 +179,11 @@ footer{border-top:1px solid var(--panel-brd);padding:44px 0 100px}
   .burger{display:flex}
   .about-grid{grid-template-columns:1fr}
   .cred{grid-template-columns:1fr;text-align:center;justify-items:center;padding:34px 26px}
-  section{padding:40px 0}
+  section{padding:30px 0}
   .tick{padding:0 30px}
   .tick .n{font-size:25px}
-  .contact{padding:40px 0}
+  .contact{padding:30px 0}
+  .ticker{margin-top:30px}
   
 }
 @media(max-width:480px){
