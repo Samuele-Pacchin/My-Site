@@ -1,497 +1,205 @@
-<!DOCTYPE html>
-<html lang="it">
+<!doctype html>
+<html lang="it" class="is-loading">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Samuele Pacchin — Siti web, landing page e automazioni AI | Vicenza</title>
-<meta name="description" content="Samuele Pacchin, web designer e sviluppatore a Vicenza. Siti web, landing page e automazioni su misura per aziende e professionisti, consegnati in tempi rapidi a prezzo fisso.">
-<meta name="author" content="Samuele Pacchin">
-<link rel="canonical" href="https://teovani.it/">
-<meta name="theme-color" content="#F3F0E8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concept Coupé — Coupé sportiva, interni e vista a 360°</title>
+  <!-- Dentro teovani.it (iframe): arrivati in fondo, la rotella continua a scorrere la pagina che la contiene -->
+  <script>
+  /* Dentro teovani.it (iframe): la rotella fa scorrere questa pagina in modo morbido fino in fondo,
+     poi continua sulla pagina che la contiene. Durante il caricamento scorre direttamente teovani.it. */
+  (function () {
+    if (window.self === window.top) return;
+    var P = window.parent, direct = true;
+    try { void P.document; } catch (e) { direct = false; } // aperto da file o da un altro dominio: si usa postMessage
+    function scrollParent(dy) {
+      if (direct && typeof P.teovaniScroll === 'function') P.teovaniScroll(dy);
+      else if (direct) P.scrollBy(0, dy);
+      else P.postMessage({ teovaniScroll: dy }, '*');
+    }
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var target = null, raf = 0;
+    function stop() { cancelAnimationFrame(raf); raf = 0; target = null; }
+    function step() {
+      var diff = target - window.scrollY;
+      if (Math.abs(diff) < 1) { window.scrollTo(0, target); stop(); return; }
+      window.scrollTo(0, window.scrollY + diff * 0.2);
+      raf = requestAnimationFrame(step);
+    }
+    addEventListener('touchstart', stop, { passive: true });
+    addEventListener('wheel', function (e) {
+      if (e.ctrlKey) return;
+      var dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? innerHeight : 1);
+      if (!dy) return;
+      e.preventDefault(); e.stopPropagation();
+      if (document.documentElement.classList.contains('is-loading')) { stop(); scrollParent(dy); return; }
+      var max = document.documentElement.scrollHeight - innerHeight;
+      var base = target === null ? window.scrollY : target;
+      var next = Math.max(0, Math.min(max, base + dy));
+      var rest = base + dy - next;            // la parte che questa pagina non può più scorrere
+      if (next !== base) {
+        target = next;
+        if (reduce) { window.scrollTo(0, target); target = null; }
+        else if (!raf) raf = requestAnimationFrame(step);
+      }
+      if (rest) scrollParent(rest);
+    }, { capture: true, passive: false });
+  })();
+  </script>
+  <meta name="description" content="Guarda la Concept Coupé prendere forma pezzo dopo pezzo mentre scorri, entra negli interni in Alcantara e carbonio e girala a 360°, anche dall'alto." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="author" content="Samuele Pacchin" />
+  <meta name="theme-color" content="#060708" />
+  <!-- ESEMPIO.com è un segnaposto: sostituirlo con il dominio reale qui, in public/robots.txt e public/sitemap.xml -->
+  <link rel="canonical" href="https://ESEMPIO.com/" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="./favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
 
-<!-- Open Graph / social -->
-<meta property="og:type" content="website">
-<meta property="og:locale" content="it_IT">
-<meta property="og:url" content="https://teovani.it/">
-<meta property="og:title" content="Samuele Pacchin — Siti e automazioni che lavorano per te">
-<meta property="og:description" content="Web designer e sviluppatore a Vicenza. Siti, landing page e automazioni su misura, consegnati in tempi record.">
-<meta name="twitter:card" content="summary_large_image">
-<!-- quando avrai un'immagine di anteprima (1200x630) aggiungi:
-<meta property="og:image" content="https://teovani.it/img/og.jpg"> -->
+  <!-- Anteprime social (WhatsApp, LinkedIn, Facebook, X) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Concept Coupé" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:url" content="https://ESEMPIO.com/" />
+  <meta property="og:title" content="Concept Coupé — guardala prendere forma" />
+  <meta property="og:description" content="Assemblaggio a scorrimento, interni in Alcantara e carbonio, vista a 360°." />
+  <meta property="og:image" content="https://ESEMPIO.com/social-preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Concept Coupé grigio grafite, vista anteriore di tre quarti su fondo scuro" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Concept Coupé — guardala prendere forma" />
+  <meta name="twitter:description" content="Assemblaggio a scorrimento, interni in Alcantara e carbonio, vista a 360°." />
+  <meta name="twitter:image" content="https://ESEMPIO.com/social-preview.jpg" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="chat.css">
-<link rel="stylesheet" href="pages.css">
-
-<script type="application/ld+json">
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Person",
-      "@id": "https://teovani.it/#samuele",
-      "name": "Samuele Pacchin",
-      "jobTitle": "Web designer e sviluppatore",
-      "url": "https://teovani.it/",
-      "email": "mailto:samuelepacchin.swint@gmail.com",
-      "telephone": "+393711522624",
-      "sameAs": [
-        "https://www.linkedin.com/in/samuele-pacchin-bb88b2244"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Vicenza",
-        "addressRegion": "VI",
-        "addressCountry": "IT"
-      },
-      "knowsAbout": [
-        "Web design",
-        "Sviluppo siti web",
-        "Landing page",
-        "Automazione dei processi",
-        "Integrazioni API",
-        "Intelligenza artificiale",
-        "Video e immagini con AI",
-        "SEO"
-      ],
-      "image": "https://teovani.it/img/samuele.jpg"
-    },
-    {
-      "@type": "ProfessionalService",
-      "@id": "https://teovani.it/#servizio",
-      "name": "Samuele Pacchin — Sviluppo web e automazioni AI",
-      "url": "https://teovani.it/",
-      "founder": {
-        "@id": "https://teovani.it/#samuele"
-      },
-      "areaServed": [
-        {
-          "@type": "City",
-          "name": "Vicenza"
-        },
-        {
-          "@type": "Country",
-          "name": "Italia"
-        }
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Vicenza",
-        "addressCountry": "IT"
-      },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Servizi",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Landing page su misura",
-              "url": "https://teovani.it/servizi/landing-page-vicenza/"
-            },
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "minPrice": 349,
-              "priceCurrency": "EUR"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Siti web e siti vetrina",
-              "url": "https://teovani.it/servizi/siti-web-vicenza/"
-            },
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "minPrice": 499,
-              "priceCurrency": "EUR"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Automazioni AI per aziende",
-              "url": "https://teovani.it/servizi/automazioni-ai/"
-            },
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "minPrice": 899,
-              "priceCurrency": "EUR"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Video e immagini generati con AI",
-              "url": "https://teovani.it/servizi/video-immagini-ai/"
-            }
-          }
-        ]
-      },
-      "image": "https://teovani.it/img/samuele.jpg",
-      "telephone": "+393711522624",
-      "email": "samuelepacchin.swint@gmail.com"
-    },
-    {
       "@type": "WebSite",
-      "@id": "https://teovani.it/#sito",
-      "name": "Samuele Pacchin",
-      "url": "https://teovani.it/",
-      "inLanguage": "it",
-      "publisher": {
-        "@id": "https://teovani.it/#samuele"
+      "@id": "https://ESEMPIO.com/#website",
+      "url": "https://ESEMPIO.com/",
+      "name": "Concept Coupé",
+      "inLanguage": "it-IT",
+      "creator": {
+        "@id": "https://ESEMPIO.com/#autore"
       }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ESEMPIO.com/#pagina",
+      "url": "https://ESEMPIO.com/",
+      "name": "Concept Coupé — Coupé sportiva, interni e vista a 360°",
+      "description": "Guarda la Concept Coupé prendere forma pezzo dopo pezzo mentre scorri, entra negli interni in Alcantara e carbonio e girala a 360°, anche dall'alto.",
+      "inLanguage": "it-IT",
+      "isPartOf": {
+        "@id": "https://ESEMPIO.com/#website"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://ESEMPIO.com/social-preview.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "author": {
+        "@id": "https://ESEMPIO.com/#autore"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://ESEMPIO.com/#autore",
+      "name": "Samuele Pacchin",
+      "jobTitle": "Web designer e sviluppatore web"
     }
   ]
 }
-</script>
-<meta name="google-site-verification" content="WiqLpjYxoyMqKcL6YcT01J1tWkQzt8MvNWBGTIH6xCg" />
+  </script>
+  <link rel="preload" as="image" href="./frames/f_001.webp" media="(min-aspect-ratio: 3/4)" />
+  <link rel="preload" as="image" href="./frames-m/f_001.webp" media="(max-aspect-ratio: 3/4)" />
+  <script defer src="./assets/index-Cg3Azzcb.js"></script>
+  <link rel="stylesheet" href="./assets/style-uv_8kwpN.css">
 </head>
 <body>
-<a class="skip" href="#contenuto">Vai al contenuto</a>
 
-<header class="top" id="header">
-  <div class="wrap nav">
-    <a href="#top" class="logo" aria-label="Samuele Pacchin, torna su">
-      <span class="logo-mark" aria-hidden="true">sp</span>
-      <span>Samuele Pacchin</span>
-    </a>
-    <button class="burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Apri il menu">
-      <span></span><span></span>
-    </button>
-    <nav class="menu" id="menu" aria-label="Navigazione principale">
-      <a href="/">Home</a>
-      <div class="m-drop"><a href="/lavori/">Progetti</a>
-        <div class="m-sub">
-          <a href="/lavori/sito-web-aziendale/">Siti web</a>
-          <a href="/lavori/landing-page-premium/">Landing page</a>
-          <a href="/lavori/preventivi-automatici-noleggio/">Automazioni</a>
+  <main id="top">
+    <!-- HERO: sequenza di frame guidata dallo scroll -->
+    <section class="hero" aria-label="Assemblaggio della carrozzeria">
+      <div class="hero__sticky">
+        <canvas class="hero__canvas" aria-hidden="true"></canvas>
+        <div class="hero__vignette" aria-hidden="true"></div>
+        <div class="hero__loader" role="status" aria-live="polite"><span class="label">Caricamento</span><b data-progress>0%</b><i class="hero__loader-bar"><i></i></i></div>
+
+        <!-- Tre frasi, sempre nello stesso punto: l'occhio non deve cercarle. Le righe salgono una alla volta. -->
+        <div class="hero__chapter" data-from="0" data-to="0.3">
+          <h1 class="hero__title"><span class="sr-only">Concept Coupé: </span><span class="line"><span>Una sola regola:</span></span><span class="line"><span>emozionare.</span></span></h1>
+          <p class="hero__lead">Dal primo bullone all'ultima cucitura.</p>
+        </div>
+        <div class="hero__chapter" data-from="0.36" data-to="0.66">
+          <h2 class="hero__title"><span class="line"><span>Conta quello</span></span><span class="line"><span>che c'è sotto.</span></span></h2>
+          <p class="hero__lead">Telaio rigido, sospensioni a vista, pinze rosse pronte a mordere l'asfalto.</p>
+        </div>
+        <div class="hero__chapter" data-from="0.74" data-to="1.01">
+          <h2 class="hero__title"><span class="line"><span>Nata</span></span><span class="line"><span>per correre.</span></span></h2>
+          <p class="hero__lead">Sguardo LED, calandra a nido d'ape, pinze rosse dietro ai raggi. Un design che non chiede permesso.</p>
+        </div>
+
+        <div class="hud" aria-hidden="true"><div class="hud__bar"><i></i></div></div>
+        <div class="hero__rule" aria-hidden="true"></div>
+        <div class="scroll-cue label" aria-hidden="true">Scorri<i></i></div>
+      </div>
+    </section>
+
+    <!-- INTERNI -->
+    <section class="interior" id="interni" aria-labelledby="interni-title">
+      <div class="interior__head">
+        <h2 id="interni-title" class="h2 h2--fit"><span>Viaggiare non è mai</span> <span>stato così comodo.</span></h2>
+        <p class="lead">Alcantara, carbonio e due display: il lusso che dalla strada non si vede, ma si sente appena chiudi la portiera.</p>
+      </div>
+
+      <figure class="interior__video reveal">
+        <video aria-hidden="true" poster="./media/interni-poster.jpg" muted loop playsinline preload="none"
+          data-src="./media/interni.mp4" data-src-small="./media/interni-m.mp4"></video>
+        <button class="interior__expand" type="button" data-zoom-video aria-label="Guarda il video degli interni a tutto schermo"></button>
+      </figure>
+
+      <div class="interior__grid">
+        <figure class="card reveal">
+          <button class="zoom" type="button" data-zoom aria-label="Apri a tutto schermo: Plancia con quadro strumenti digitale e schermo centrale, sedili anteriori in Alcantara"><img src="./img/interno-anteriori.webp" width="1375" height="768" alt="Plancia con quadro strumenti digitale e schermo centrale, sedili anteriori in Alcantara" loading="lazy" /></button>
+          <figcaption><span class="label">01</span> Posto guida — doppio display, inserti in carbonio sulla plancia</figcaption>
+        </figure>
+        <figure class="card reveal">
+          <button class="zoom" type="button" data-zoom aria-label="Apri a tutto schermo: Due sedute posteriori singole in Alcantara con bracciolo centrale"><img src="./img/interni-posteriori.webp" width="1024" height="572" alt="Due sedute posteriori singole in Alcantara con bracciolo centrale" loading="lazy" /></button>
+          <figcaption><span class="label">02</span> Posteriori — due sedute singole in Alcantara, bracciolo centrale</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- VISTA A 360° (fotogrammi; ha sostituito il configuratore 3D) -->
+    <section class="config" id="configuratore" aria-labelledby="config-title">
+      <h2 id="config-title" class="sr-only">L'auto a 360°</h2>
+      <div class="config__stage">
+        <canvas class="config__canvas" tabindex="0" aria-label="L'auto a 360°: trascina o usa le frecce sinistra e destra per ruotarla, su e giù per guardarla dall'alto"></canvas>
+        <img class="config__poster" src="./img/auto-assemblata.webp" alt="" decoding="async" loading="lazy" />
+        <p class="config__hint label" aria-hidden="true">Trascina per ruotare l'auto</p>
+        <div class="config__views" role="group" aria-label="Vista">
+          <button type="button" data-view="0" aria-pressed="true">Laterale</button>
+          <button type="button" data-view="1" aria-pressed="false">Dall'alto</button>
         </div>
       </div>
-      <a href="/prezzi/">Prezzi</a>
-      <a href="/blog/">Blog</a>
-      <a href="/contatti/#contactForm" class="menu-cta">Parliamone</a>
-    </nav>
-  </div>
-</header>
+    </section>
+  </main>
 
-<main id="contenuto">
+  <!-- Vista a tutto schermo per foto e video degli interni -->
+  <dialog class="lightbox" aria-label="Vista a tutto schermo">
+    <button class="lightbox__close" type="button" aria-label="Chiudi">×</button>
+    <div class="lightbox__stage"></div>
+  </dialog>
 
-  <!-- ============ HERO ============ -->
-  <section class="hero" id="top" aria-labelledby="hero-title">
-    <div class="wrap">
-      <div class="hero-grid">
-        <div class="hero-text">
-          <p class="kicker"><span class="rec" aria-hidden="true"></span>Web designer e sviluppatore · Vicenza</p>
-          <h1 id="hero-title" class="hero-title">Siti e automazioni che lavorano per te. <em>Consegnati in tempi record.</em></h1>
-          <p class="hero-sub">Siti web, landing page e automazioni <b>su misura</b> per aziende e professionisti. Progetto curato, prezzo fisso, consegna rapida.</p>
-          <div class="hero-cta">
-            <a href="/contatti/#contactForm" class="btn btn-ink">Raccontami il progetto <span aria-hidden="true">→</span></a>
-            <a href="#progetti" class="btn btn-line">Guarda i lavori</a>
-          </div>
-        </div>
-        <!-- FOTO: salva la tua foto come img/samuele.jpg (verticale, es. 800x1000) e comparirà qui e nei Contatti -->
-        <figure class="hero-photo"><img class="ph-img" src="img/samuele.jpg" alt="Samuele Pacchin" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="ph-fallback" hidden aria-hidden="true">SP</span></figure>
-      </div>
-    </div>
+  <footer class="foot">
+    <span class="label">© 2026 Concept Coupé · Design e sviluppo Samuele Pacchin</span>
+    <span class="label">Immagini generate con AI · <a href="privacy.html">Privacy</a></span>
+  </footer>
 
-    <!-- WORKFLOW DAL VIVO — è il tuo workflow reale dei preventivi noleggio, con dati simulati -->
-    <div class="wf" id="wf" role="region" aria-label="Demo animata di un'automazione reale: preventivi automatici per un'azienda di noleggio">
-      <div class="wrap">
-        <div class="wf-head">
-          <span class="wf-tag"><span class="dot-live" aria-hidden="true"></span>In esecuzione · automazione reale, dati simulati</span>
-          <span class="wf-meta">Preventivi automatici per un'azienda di noleggio</span>
-        </div>
-        <ol class="wf-nodes" id="wfNodes">
-          <li class="node" data-step="0"><span class="n-ico" aria-hidden="true">✉</span><span class="n-name">Arriva una mail</span><span class="n-tool">01</span><span class="n-out"></span></li>
-          <li class="node" data-step="1"><span class="n-ico" aria-hidden="true">◎</span><span class="n-name">L'AI la legge</span><span class="n-tool">02</span><span class="n-out"></span></li>
-          <li class="node" data-step="2"><span class="n-ico" aria-hidden="true">≡</span><span class="n-name">Cerca a catalogo</span><span class="n-tool">03</span><span class="n-out"></span></li>
-          <li class="node" data-step="3"><span class="n-ico" aria-hidden="true">€</span><span class="n-name">Calcola il prezzo</span><span class="n-tool">04</span><span class="n-out"></span></li>
-          <li class="node" data-step="4"><span class="n-ico" aria-hidden="true">✎</span><span class="n-name">Scrive la bozza</span><span class="n-tool">05</span><span class="n-out"></span></li>
-          <li class="node" data-step="5"><span class="n-ico" aria-hidden="true">●</span><span class="n-name">Aggiorna il semaforo</span><span class="n-tool">06</span><span class="n-out"></span></li>
-        </ol>
-        <div class="wf-foot">
-          <p class="wf-log" id="wfLog" aria-live="off"></p>
-          <p class="wf-count"><span id="wfDone">0 preventivi pronti</span> · zero clic manuali</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ METODO ============ -->
-  <section class="sec" id="metodo" aria-labelledby="metodo-title">
-    <div class="wrap">
-      <p class="eyebrow">01 — Perché sceglierti</p>
-      <h2 id="metodo-title" class="h2">Lavori di alto livello.<br><em>In metà del tempo.</em></h2>
-      <p class="lead">Lavoro ogni giorno con l'intelligenza artificiale e so renderla operativa al 100%. È questo che mi permette di consegnare progetti curati in tempi più brevi della media, a prezzi competitivi.</p>
-
-      <div class="method">
-        <article class="m-item">
-          <span class="m-n">A</span>
-          <h3>Più veloce, stessa qualità</h3>
-          <p>Con l'AI riduco i tempi di sviluppo. Il tempo che risparmio lo investo nei dettagli che fanno la differenza.</p>
-        </article>
-        <article class="m-item">
-          <span class="m-n">B</span>
-          <h3>Curato nei dettagli</h3>
-          <p>Struttura e design pensati sul tuo obiettivo, testati su computer e telefono. Niente viene consegnato senza il mio controllo.</p>
-        </article>
-        <article class="m-item">
-          <span class="m-n">C</span>
-          <h3>Prezzo fisso, niente sorprese</h3>
-          <p>Dopo una chiamata di 15 minuti ricevi un preventivo chiaro: sai da subito cosa ottieni, quando e quanto spendi.</p>
-        </article>
-        <article class="m-item m-faq">
-          <span class="m-n">?</span>
-          <h3>"E se qualcosa si rompe?"</h3>
-          <p>Lo sistemo io. Il primo mese di assistenza è incluso, poi intervengo a tariffa o con un canone. Ogni progetto ha la sua documentazione.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ SERVIZI ============ -->
-  <section class="sec sec-line" id="servizi" aria-labelledby="servizi-title">
-    <div class="wrap">
-      <p class="eyebrow">02 — Servizi</p>
-      <h2 id="servizi-title" class="h2">Tre cose. <em>Fatte bene.</em></h2>
-
-      <div class="svc-list">
-        <article class="svc svc-main">
-          <div class="svc-top"><span class="svc-n">01</span><span class="svc-flag">La mia specialità</span></div>
-          <h3>Siti web e landing page</h3>
-          <p>Pagine progettate attorno a un obiettivo: farti chiamare, farti scrivere, farti vendere. Codice su misura, veloce, con animazioni curate quando servono.</p>
-          <ul class="ticks">
-            <li>Landing page per campagne e lanci</li>
-            <li>Siti aziendali multipagina, anche bilingue</li>
-            <li>SEO di base, form, privacy e cookie</li>
-            <li>Pubblicazione su hosting, WordPress o Shopify</li>
-          </ul>
-          <p class="svc-links"><a href="/servizi/landing-page-vicenza/">Landing page →</a><a href="/servizi/siti-web-vicenza/">Siti web →</a></p>
-        </article>
-        <article class="svc">
-          <div class="svc-top"><span class="svc-n">02</span></div>
-          <h3>Automazioni AI</h3>
-          <p>Collego mail, fogli, gestionali e AI per togliere il lavoro ripetitivo. Esempio reale: richieste di noleggio che diventano preventivi pronti da inviare.</p>
-          <ul class="ticks">
-            <li>Workflow con n8n e API</li>
-            <li>AI che legge mail e documenti</li>
-            <li>Bozze, report e fogli aggiornati da soli</li>
-          </ul>
-          <p class="svc-links"><a href="/servizi/automazioni-ai/">Scopri le automazioni →</a></p>
-        </article>
-        <article class="svc">
-          <div class="svc-top"><span class="svc-n">03</span></div>
-          <h3>Video e immagini AI</h3>
-          <p>Contenuti visivi generati con AI per siti, prodotti e campagne social, coerenti con il tuo brand.</p>
-          <ul class="ticks">
-            <li>Video brevi per social e hero di siti</li>
-            <li>Immagini prodotto e ambientazioni</li>
-            <li>Kling, Gemini, ChatGPT e altri</li>
-          </ul>
-          <p class="svc-links"><a href="/servizi/video-immagini-ai/">Scopri video e immagini →</a></p>
-        </article>
-      </div>
-      <p class="more-link"><a href="/servizi/">Tutti i servizi →</a></p>
-    </div>
-  </section>
-
-  <!-- ============ PROGETTI ============ -->
-  <section class="sec sec-line" id="progetti" aria-labelledby="progetti-title">
-    <div class="wrap">
-      <p class="eyebrow">03 — Progetti</p>
-      <h2 id="progetti-title" class="h2">Non ti dico cosa so fare.<br><em>Ti mostro cosa ho fatto.</em></h2>
-
-      <div class="cases">
-
-        <!-- CASO 1 — AICON -->
-        <article class="case" id="lavoro-sito-web">
-          <div class="shot shot-live">
-            <div class="s-bar"><i></i><i></i><i></i><span>aicon-industry.com</span><a href="https://www.aicon-industry.com/" target="_blank" rel="noopener">Apri ↗</a></div>
-            <div class="live-vp" data-w="1280">
-              <iframe src="https://www.aicon-industry.com/" title="Sito Aicon Industry: scorrilo qui dentro" loading="lazy"></iframe>
-            </div>
-            <span class="live-hint" aria-hidden="true">Scorri dentro ↕</span>
-          </div>
-          <div class="case-body">
-            <p class="case-meta"><span>Cliente reale</span><span>Sito aziendale</span><span>2026</span></p>
-            <h3>Aicon Industry</h3>
-            <dl class="case-log">
-              <div><dt>Richiesta</dt><dd>Rifare da zero il sito aziendale di un'azienda di dispositivi per il fotovoltaico.</dd></div>
-              <div><dt>Consegna</dt><dd>Sito su misura di 14 pagine, in italiano e inglese, con form contatti e candidature.</dd></div>
-              <div><dt>Risultato</dt><dd>Un sito più veloce, più semplice da gestire e pronto per due lingue.</dd></div>
-            </dl>
-            <ul class="tags"><li>Sito aziendale</li><li>14 pagine</li><li>Bilingue IT/EN</li><li>Form</li></ul>
-            <p class="case-links"><a class="case-link" href="/lavori/sito-web-aziendale/">Leggi il progetto →</a><a class="case-link" href="https://www.aicon-industry.com/" target="_blank" rel="noopener">Vai al sito online ↗</a></p>
-          </div>
-        </article>
-
-        <!-- CASO 2 — CONCEPT COUPÉ -->
-        <article class="case" id="lavoro-landing">
-          <div class="shot shot-live">
-            <div class="s-bar"><i></i><i></i><i></i><span>concept-coupé · demo</span><a href="progetti/concept-coupe/index.html" target="_blank" rel="noopener">Apri ↗</a></div>
-            <div class="live-vp" data-w="1440">
-              <iframe src="progetti/concept-coupe/index.html" title="Landing Concept Coupé: scorrila qui dentro" loading="lazy" allow="fullscreen"></iframe>
-            </div>
-            <span class="live-hint" aria-hidden="true">Scorri dentro ↕</span>
-          </div>
-          <div class="case-body">
-            <p class="case-meta"><span>Progetto demo</span><span>Landing premium</span><span>2026</span></p>
-            <h3>Concept Coupé</h3>
-            <dl class="case-log">
-              <div><dt>Richiesta</dt><dd>Mostrare cosa può fare una landing automotive di fascia alta. Nessun marchio reale.</dd></div>
-              <div><dt>Consegna</dt><dd>Hero animata allo scroll, sezione interni con video e vista a 360° da ruotare con il dito o il mouse.</dd></div>
-              <div><dt>Risultato</dt><dd>Il livello di dettaglio che porto anche nelle landing dei clienti.</dd></div>
-            </dl>
-            <ul class="tags"><li>Landing premium</li><li>Animazioni</li><li>Vista a 360°</li></ul>
-            <p class="case-links"><a class="case-link" href="/lavori/landing-page-premium/">Leggi il progetto →</a><a class="case-link" href="progetti/concept-coupe/index.html" target="_blank" rel="noopener">Apri la demo a schermo intero ↗</a></p>
-          </div>
-        </article>
-
-        <!-- CASO 3 — AUTOMAZIONE NOLEGGI -->
-        <article class="case" id="lavoro-preventivi">
-          <div class="shot shot-wf" aria-hidden="true">
-            <div class="s-body">
-              <span class="s-row"><i class="c-r"></i>Da inviare</span>
-              <span class="s-row"><i class="c-y"></i>In attesa cliente</span>
-              <span class="s-row"><i class="c-p"></i>In lavorazione</span>
-              <span class="s-row"><i class="c-g"></i>Confermato</span>
-              <span class="s-row"><i class="c-k"></i>Rifiutato</span>
-            </div>
-          </div>
-          <div class="case-body">
-            <p class="case-meta"><span>Prodotto mio</span><span>Automazione AI</span><span>2026</span></p>
-            <h3>Preventivi automatici per il noleggio</h3>
-            <dl class="case-log">
-              <div><dt>Richiesta</dt><dd>Le aziende di noleggio attrezzature perdono ore a rispondere alle mail di richiesta preventivo.</dd></div>
-              <div><dt>Consegna</dt><dd>Un sistema che legge le mail di richiesta, sceglie gli articoli a catalogo, calcola il prezzo e prepara la bozza di preventivo. Un semaforo segue ogni trattativa.</dd></div>
-              <div><dt>Risultato</dt><dd>L'ufficio deve solo controllare e premere invio. Ogni trattativa è tracciata dal primo messaggio alla conferma.</dd></div>
-            </dl>
-            <ul class="tags"><li>Automazione</li><li>Preventivi</li><li>Gmail</li><li>Google Sheets</li></ul>
-            <p class="case-links"><a class="case-link" href="/lavori/preventivi-automatici-noleggio/">Leggi il progetto →</a><a class="case-link" href="https://lnkd.in/p/e7WB-rc3" target="_blank" rel="noopener">Guarda l'automazione su LinkedIn ↗</a></p>
-          </div>
-        </article>
-
-      </div>
-      <p class="more-link"><a href="/lavori/">Tutti i progetti →</a></p>
-
-    </div>
-  </section>
-
-
-  <!-- ============ PREZZI IN BREVE ============ -->
-  <section class="sec sec-line" id="prezzi" aria-labelledby="prezzi-title">
-    <div class="wrap">
-      <p class="eyebrow">04 — Prezzi</p>
-      <h2 id="prezzi-title" class="h2">Prezzi chiari <em>da subito.</em></h2>
-      <ul class="price-strip">
-        <li><span>Landing page</span><b>da 349 €</b></li>
-        <li><span>Sito vetrina</span><b>da 499 €</b></li>
-        <li><span>Automazione AI</span><b>da 899 €</b><small>Un'automazione può far risparmiare alla tua azienda decine di ore di lavoro ogni settimana.</small></li>
-      </ul>
-      <p class="lead">Prezzi di partenza. Dopo una chiamata di 15 minuti ricevi un prezzo fisso, senza sorprese.</p>
-      <p class="more-link"><a href="/prezzi/">Prezzi, condizioni e domande frequenti →</a></p>
-    </div>
-  </section>
-
-  <!-- ============ CHATBOT DEMO ============ -->
-  <section class="sec" aria-labelledby="bot-title">
-    <div class="wrap">
-      <div class="bot-cta">
-        <div>
-          <p class="eyebrow eyebrow-inv">Prova dal vivo</p>
-          <h2 id="bot-title" class="h3">L'assistente di questo sito l'ho costruito io.</h2>
-          <p>Fagli una domanda sul tuo progetto: un assistente così posso metterlo anche sul tuo sito.</p>
-        </div>
-        <button class="btn btn-accent" id="botOpen" type="button">Fai una domanda <span aria-hidden="true">→</span></button>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============ CONTATTO ============ -->
-  <section class="sec sec-line" aria-labelledby="cta-title">
-    <div class="wrap cta-end">
-      <p class="eyebrow">05 — Contatti</p>
-      <h2 id="cta-title" class="h2">Raccontami <em>cosa ti serve.</em></h2>
-      <p class="lead">Ti rispondo entro un giorno lavorativo.</p>
-      <div class="hero-cta">
-        <a href="/contatti/#contactForm" class="btn btn-ink">Scrivimi <span aria-hidden="true">→</span></a>
-        <a href="https://wa.me/393711522624?text=Ciao%20Samuele%2C%20ti%20scrivo%20dal%20tuo%20sito%3A%20vorrei%20parlarti%20di%20un%20progetto." class="btn btn-line" target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.42 1.3-1.950 1.35-.5.05-.97.23-3.28-.68-2.770-1.090-4.530-3.930-4.670-4.110-.13-.18-1.11-1.48-1.11-2.83s.71-2.01.96-2.28c.25-.27.55-.34.73-.34l.52.01c.17.01.39-.06.61.47.24.56.79 1.92.86 2.06.07.14.11.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.36-.41.48-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.050.93 1.93 1.22 2.2 1.36.27.14.43.11.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.23.61-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.11.07.66-.17 1.33z"/></svg> WhatsApp</a>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="foot">
-  <div class="wrap">
-    <div class="foot-nav">
-      <div class="foot-about">
-        <b>Samuele Pacchin</b>
-        <p>Web designer e sviluppatore a Vicenza. Siti web, landing page e automazioni AI per aziende e professionisti in tutta Italia.</p>
-      </div>
-      <nav aria-label="Servizi">
-        <h2>Servizi</h2>
-        <ul>
-          <li><a href="/servizi/landing-page-vicenza/">Landing page</a></li>
-          <li><a href="/servizi/siti-web-vicenza/">Siti web</a></li>
-          <li><a href="/servizi/automazioni-ai/">Automazioni AI</a></li>
-          <li><a href="/servizi/video-immagini-ai/">Video e immagini AI</a></li>
-        </ul>
-      </nav>
-      <nav aria-label="Progetti">
-        <h2>Progetti</h2>
-        <ul>
-          <li><a href="/lavori/sito-web-aziendale/">Siti web</a></li>
-          <li><a href="/lavori/landing-page-premium/">Landing page</a></li>
-          <li><a href="/lavori/preventivi-automatici-noleggio/">Automazioni</a></li>
-        </ul>
-      </nav>
-      <nav aria-label="Altro">
-        <h2>Altro</h2>
-        <ul>
-          <li><a href="/blog/">Blog</a></li>
-          <li><a href="/contatti/#contactForm">Contatti</a></li>
-          <li><a href="https://www.linkedin.com/in/samuele-pacchin-bb88b2244" target="_blank" rel="noopener">LinkedIn</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="foot-in">
-      <p><b>Samuele Pacchin</b> · Sviluppo web e automazioni AI · Vicenza</p>
-      <!-- Se hai la P.IVA, aggiungila qui: <p>P.IVA 00000000000</p> -->
-      <p><a href="/privacy.html">Privacy e cookie</a> · © <span id="yr"></span></p>
-    </div>
-  </div>
-</footer>
-
-<!-- ================= CHAT WIDGET ================= -->
-<button id="chatFab" class="chat-fab" aria-label="Apri l'assistente AI" aria-expanded="false" aria-controls="chatPanel">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/></svg>
-  <span>Chiedi all'AI</span>
-</button>
-<div id="chatPanel" class="chat-panel" role="dialog" aria-modal="false" aria-labelledby="chatTitle" hidden>
-  <div class="chat-head">
-    <div><strong id="chatTitle">Assistente AI</strong><small>di Samuele Pacchin</small></div>
-    <button id="chatClose" class="chat-close" aria-label="Chiudi l'assistente">×</button>
-  </div>
-  <div id="chatBody" class="chat-body" aria-live="polite"></div>
-  <form id="chatForm" class="chat-input">
-    <label for="chatText" class="sr">Scrivi un messaggio</label>
-    <input id="chatText" type="text" placeholder="Scrivi un messaggio…" autocomplete="off">
-    <button type="submit" class="chat-send" aria-label="Invia">↑</button>
-  </form>
-  <p class="chat-note">Le conversazioni sono elaborate da Claude (Anthropic). <a href="privacy.html">Privacy</a></p>
-</div>
-
-<script src="script.js"></script>
-<script src="chat.js"></script>
 </body>
 </html>
