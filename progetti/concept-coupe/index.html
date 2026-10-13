@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="it" class="is-loading">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concept Coupé — Coupé sportiva, interni e vista a 360°</title>
+  <!-- Dentro teovani.it (iframe): arrivati in fondo, la rotella continua a scorrere la pagina che la contiene -->
+  <script>
+  /* Dentro teovani.it (iframe): la rotella fa scorrere questa pagina in modo morbido fino in fondo,
+     poi continua sulla pagina che la contiene. Durante il caricamento scorre direttamente teovani.it. */
+  (function () {
+    if (window.self === window.top) return;
+    var P = window.parent, direct = true;
+    try { void P.document; } catch (e) { direct = false; } // aperto da file o da un altro dominio: si usa postMessage
+    function scrollParent(dy) {
+      if (direct && typeof P.teovaniScroll === 'function') P.teovaniScroll(dy);
+      else if (direct) P.scrollBy(0, dy);
+      else P.postMessage({ teovaniScroll: dy }, '*');
+    }
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var target = null, raf = 0;
+    function stop() { cancelAnimationFrame(raf); raf = 0; target = null; }
+    function step() {
+      var diff = target - window.scrollY;
+      if (Math.abs(diff) < 1) { window.scrollTo(0, target); stop(); return; }
+      window.scrollTo(0, window.scrollY + diff * 0.2);
+      raf = requestAnimationFrame(step);
+    }
+    addEventListener('touchstart', stop, { passive: true });
+    addEventListener('wheel', function (e) {
+      if (e.ctrlKey) return;
+      var dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? innerHeight : 1);
+      if (!dy) return;
+      e.preventDefault(); e.stopPropagation();
+      if (document.documentElement.classList.contains('is-loading')) { stop(); scrollParent(dy); return; }
+      var max = document.documentElement.scrollHeight - innerHeight;
+      var base = target === null ? window.scrollY : target;
+      var next = Math.max(0, Math.min(max, base + dy));
+      var rest = base + dy - next;            // la parte che questa pagina non può più scorrere
+      if (next !== base) {
+        target = next;
+        if (reduce) { window.scrollTo(0, target); target = null; }
+        else if (!raf) raf = requestAnimationFrame(step);
+      }
+      if (rest) scrollParent(rest);
+    }, { capture: true, passive: false });
+  })();
+  </script>
+  <meta name="description" content="Guarda la Concept Coupé prendere forma pezzo dopo pezzo mentre scorri, entra negli interni in Alcantara e carbonio e girala a 360°, anche dall'alto." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="author" content="Samuele Pacchin" />
+  <meta name="theme-color" content="#060708" />
+  <!-- ESEMPIO.com è un segnaposto: sostituirlo con il dominio reale qui, in public/robots.txt e public/sitemap.xml -->
+  <link rel="canonical" href="https://ESEMPIO.com/" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="./favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+
+  <!-- Anteprime social (WhatsApp, LinkedIn, Facebook, X) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Concept Coupé" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:url" content="https://ESEMPIO.com/" />
+  <meta property="og:title" content="Concept Coupé — guardala prendere forma" />
+  <meta property="og:description" content="Assemblaggio a scorrimento, interni in Alcantara e carbonio, vista a 360°." />
+  <meta property="og:image" content="https://ESEMPIO.com/social-preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Concept Coupé grigio grafite, vista anteriore di tre quarti su fondo scuro" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Concept Coupé — guardala prendere forma" />
+  <meta name="twitter:description" content="Assemblaggio a scorrimento, interni in Alcantara e carbonio, vista a 360°." />
+  <meta name="twitter:image" content="https://ESEMPIO.com/social-preview.jpg" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://ESEMPIO.com/#website",
+      "url": "https://ESEMPIO.com/",
+      "name": "Concept Coupé",
+      "inLanguage": "it-IT",
+      "creator": {
+        "@id": "https://ESEMPIO.com/#autore"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ESEMPIO.com/#pagina",
+      "url": "https://ESEMPIO.com/",
+      "name": "Concept Coupé — Coupé sportiva, interni e vista a 360°",
+      "description": "Guarda la Concept Coupé prendere forma pezzo dopo pezzo mentre scorri, entra negli interni in Alcantara e carbonio e girala a 360°, anche dall'alto.",
+      "inLanguage": "it-IT",
+      "isPartOf": {
+        "@id": "https://ESEMPIO.com/#website"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://ESEMPIO.com/social-preview.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "author": {
+        "@id": "https://ESEMPIO.com/#autore"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://ESEMPIO.com/#autore",
+      "name": "Samuele Pacchin",
+      "jobTitle": "Web designer e sviluppatore web"
+    }
+  ]
+}
+  </script>
+  <link rel="preload" as="image" href="./frames/f_001.webp" media="(min-aspect-ratio: 3/4)" />
+  <link rel="preload" as="image" href="./frames-m/f_001.webp" media="(max-aspect-ratio: 3/4)" />
+  <script defer src="./assets/index-Cg3Azzcb.js"></script>
+  <link rel="stylesheet" href="./assets/style-uv_8kwpN.css">
+</head>
+<body>
+
+  <main id="top">
+    <!-- HERO: sequenza di frame guidata dallo scroll -->
+    <section class="hero" aria-label="Assemblaggio della carrozzeria">
+      <div class="hero__sticky">
+        <canvas class="hero__canvas" aria-hidden="true"></canvas>
+        <div class="hero__vignette" aria-hidden="true"></div>
+        <div class="hero__loader" role="status" aria-live="polite"><span class="label">Caricamento</span><b data-progress>0%</b><i class="hero__loader-bar"><i></i></i></div>
+
+        <!-- Tre frasi, sempre nello stesso punto: l'occhio non deve cercarle. Le righe salgono una alla volta. -->
+        <div class="hero__chapter" data-from="0" data-to="0.3">
+          <h1 class="hero__title"><span class="sr-only">Concept Coupé: </span><span class="line"><span>Una sola regola:</span></span><span class="line"><span>emozionare.</span></span></h1>
+          <p class="hero__lead">Dal primo bullone all'ultima cucitura.</p>
+        </div>
+        <div class="hero__chapter" data-from="0.36" data-to="0.66">
+          <h2 class="hero__title"><span class="line"><span>Conta quello</span></span><span class="line"><span>che c'è sotto.</span></span></h2>
+          <p class="hero__lead">Telaio rigido, sospensioni a vista, pinze rosse pronte a mordere l'asfalto.</p>
+        </div>
+        <div class="hero__chapter" data-from="0.74" data-to="1.01">
+          <h2 class="hero__title"><span class="line"><span>Nata</span></span><span class="line"><span>per correre.</span></span></h2>
+          <p class="hero__lead">Sguardo LED, calandra a nido d'ape, pinze rosse dietro ai raggi. Un design che non chiede permesso.</p>
+        </div>
+
+        <div class="hud" aria-hidden="true"><div class="hud__bar"><i></i></div></div>
+        <div class="hero__rule" aria-hidden="true"></div>
+        <div class="scroll-cue label" aria-hidden="true">Scorri<i></i></div>
+      </div>
+    </section>
+
+    <!-- INTERNI -->
+    <section class="interior" id="interni" aria-labelledby="interni-title">
+      <div class="interior__head">
+        <h2 id="interni-title" class="h2 h2--fit"><span>Viaggiare non è mai</span> <span>stato così comodo.</span></h2>
+        <p class="lead">Alcantara, carbonio e due display: il lusso che dalla strada non si vede, ma si sente appena chiudi la portiera.</p>
+      </div>
+
+      <figure class="interior__video reveal">
+        <video aria-hidden="true" poster="./media/interni-poster.jpg" muted loop playsinline preload="none"
+          data-src="./media/interni.mp4" data-src-small="./media/interni-m.mp4"></video>
+        <button class="interior__expand" type="button" data-zoom-video aria-label="Guarda il video degli interni a tutto schermo"></button>
+      </figure>
+
+      <div class="interior__grid">
+        <figure class="card reveal">
+          <button class="zoom" type="button" data-zoom aria-label="Apri a tutto schermo: Plancia con quadro strumenti digitale e schermo centrale, sedili anteriori in Alcantara"><img src="./img/interno-anteriori.webp" width="1375" height="768" alt="Plancia con quadro strumenti digitale e schermo centrale, sedili anteriori in Alcantara" loading="lazy" /></button>
+          <figcaption><span class="label">01</span> Posto guida — doppio display, inserti in carbonio sulla plancia</figcaption>
+        </figure>
+        <figure class="card reveal">
+          <button class="zoom" type="button" data-zoom aria-label="Apri a tutto schermo: Due sedute posteriori singole in Alcantara con bracciolo centrale"><img src="./img/interni-posteriori.webp" width="1024" height="572" alt="Due sedute posteriori singole in Alcantara con bracciolo centrale" loading="lazy" /></button>
+          <figcaption><span class="label">02</span> Posteriori — due sedute singole in Alcantara, bracciolo centrale</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- VISTA A 360° (fotogrammi; ha sostituito il configuratore 3D) -->
+    <section class="config" id="configuratore" aria-labelledby="config-title">
+      <h2 id="config-title" class="sr-only">L'auto a 360°</h2>
+      <div class="config__stage">
+        <canvas class="config__canvas" tabindex="0" aria-label="L'auto a 360°: trascina o usa le frecce sinistra e destra per ruotarla, su e giù per guardarla dall'alto"></canvas>
+        <img class="config__poster" src="./img/auto-assemblata.webp" alt="" decoding="async" loading="lazy" />
+        <p class="config__hint label" aria-hidden="true">Trascina per ruotare l'auto</p>
+        <div class="config__views" role="group" aria-label="Vista">
+          <button type="button" data-view="0" aria-pressed="true">Laterale</button>
+          <button type="button" data-view="1" aria-pressed="false">Dall'alto</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Vista a tutto schermo per foto e video degli interni -->
+  <dialog class="lightbox" aria-label="Vista a tutto schermo">
+    <button class="lightbox__close" type="button" aria-label="Chiudi">×</button>
+    <div class="lightbox__stage"></div>
+  </dialog>
+
+  <footer class="foot">
+    <span class="label">© 2026 Concept Coupé · Design e sviluppo Samuele Pacchin</span>
+    <span class="label">Immagini generate con AI · <a href="privacy.html">Privacy</a></span>
+  </footer>
+
+</body>
+</html>
